@@ -69,7 +69,7 @@
     <h2>🔗 リンク</h2>
     <p>
       <a class="button" href="https://www.youtube.com/@ゆいきち-j4c" target="_blank">YouTubeチャンネル</a>
-      <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
+      <a class="button" href="https://store.line.me/stickershop/product/31394377/ja" target="_blank">ゆいきちスタンプ</a>
     </p>
   </section>
 
