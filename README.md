@@ -14,7 +14,7 @@
       padding: 0;
     }
     header {
-      background: #ff4081;
+      background: #333;
       color: white;
       padding: 20px;
     }
@@ -33,14 +33,15 @@
       display: inline-block;
       margin: 10px;
       padding: 10px 20px;
-      background: #ff4081;
-      color: white;
+      background: #fff;
+      color: #000;
       text-decoration: none;
+      border: 1px solid #ccc;
       border-radius: 8px;
       transition: 0.3s;
     }
     a.button:hover {
-      background: #e73370;
+      background: #f0f0f0;
     }
     footer {
       background: #222;
