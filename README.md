@@ -58,7 +58,7 @@
   </header>
 
   <section>
-    <h2>🎥 最新動画</h2>
+    <h2>チャンネルやゆいきちスタンプは↓をチェック！</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed?list=UU" 
             title="YouTube video player" 
