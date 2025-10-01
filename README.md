@@ -93,14 +93,14 @@
 </head>
 <body>
   <header>
-    <h1>🎮 ゆいきち公式サイト 🎮</h1>
+    <h1> ゆいきち公式サイト </h1>
     <p>ようこそ！マイクラ実況ゆいきちワールドへ！</p>
-    <button id="darkToggle">🌙 ダークモード</button>
+    <button id="darkToggle"> ダークモード</button>
   </header>
 
   <!-- 最新動画 -->
   <section>
-    <h2>🎥 最新動画</h2>
+    <h2> 最新動画</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/hkhgFTBFkr4"
             title="YouTube video player"
@@ -122,7 +122,7 @@
 
   <!-- シリーズ動画 -->
   <section>
-    <h2>📺 人気シリーズ</h2>
+    <h2> 人気シリーズ</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/videoseries?list=PLxxxxxxx"
             title="YouTube playlist"
@@ -144,11 +144,11 @@
 
   <!-- プロフィール -->
   <section>
-    <h2>🎮 プロフィール</h2>
-    <p>こんにちは！ゆいきちです。<br>
+    <h2> プロフィール</h2>
+    <p>どうも今日も、ゆいきちです。<br>
        マイクラ実況を中心に動画投稿しています！<br>
-       得意なこと：サバイバル生活・建築<br>
-       好きなこと：冒険・仲間と遊ぶこと</p>
+       やっていること：サバイバル生活・建築<br>
+       好きなこと：栄させるw</p>
   </section>
 
   <!-- リンク集 -->
