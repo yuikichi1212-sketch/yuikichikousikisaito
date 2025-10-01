@@ -124,12 +124,12 @@
   <section>
     <h2> 人気シリーズ</h2>
     <iframe width="560" height="315"
-            src="https://www.youtube.com/embed/videoseries?list=PLxxxxxxx"
+            src="https://www.youtube.com/playlist?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
             title="YouTube playlist"
             frameborder="0"
             allowfullscreen>
     </iframe>
-    <p>（プレイリストIDに差し替えてください）</p>
+    <p>ゆいきち１０分建築</p>
   </section>
 
   <!-- ギャラリー -->
