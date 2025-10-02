@@ -7,17 +7,30 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
-      background: #555; /* 灰色背景 */
-      color: #fff;
       text-align: center;
       margin: 0;
       padding: 0;
       transition: background 0.5s, color 0.5s;
     }
+
+    /* 通常モード（灰色） */
+    body.normal {
+      background: #555;
+      color: #fff;
+    }
+
+    /* ライトモード（白） */
+    body.light {
+      background: #fff;
+      color: #000;
+    }
+
+    /* ダークモード（黒） */
     body.dark {
-      background: #111; /* 夜っぽい黒背景 */
+      background: #111;
       color: #ddd;
     }
+
     header {
       background: #228B22;
       padding: 20px;
@@ -31,7 +44,7 @@
       color: #FFD700;
       text-shadow: 2px 2px #000;
     }
-    #darkToggle {
+    #modeToggle {
       position: absolute;
       top: 15px;
       right: 15px;
@@ -42,6 +55,7 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
     section {
       padding: 30px 10px;
       background: rgba(0,0,0,0.6);
@@ -49,6 +63,16 @@
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     }
+    body.light section {
+      background: rgba(0,0,0,0.05);
+    }
+    body.normal section {
+      background: rgba(0,0,0,0.6);
+    }
+    body.dark section {
+      background: rgba(255,255,255,0.05);
+    }
+
     iframe {
       max-width: 90%;
       border-radius: 12px;
@@ -72,6 +96,7 @@
       background: #A0522D;
       transform: translateY(-2px);
     }
+
     .gallery img {
       width: 200px;
       margin: 10px;
@@ -83,6 +108,7 @@
     .gallery img:hover {
       transform: scale(1.1);
     }
+
     /* ライトボックス */
     #lightbox {
       display: none;
@@ -107,52 +133,31 @@
       margin-top: 20px;
       font-size: 0.9rem;
     }
+    body.light footer {
+      background: #eee;
+      color: #444;
+    }
   </style>
 </head>
-<body>
+<body class="normal">
   <header>
     <h1> ゆいきち公式サイト </h1>
     <p>ようこそ！マイクラ実況ゆいきちワールドへ！</p>
-    <button id="darkToggle"> ダークモード</button>
+    <button id="modeToggle">モード切替</button>
   </header>
 
-  <!-- おすすめ動画 -->
   <section>
-    <h2> おすすめ動画</h2>
+    <h2>おすすめ動画</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/hkhgFTBFkr4"
             title="YouTube video player"
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
     </iframe>
   </section>
 
-  <!-- お知らせ -->
   <section>
-    <h2> お知らせ</h2>
-    <ul style="list-style:none; padding:0;">
-      <li>チャンネル登録者数2025年10月1日45人突破！</li>
-      <li> ゆいきちLINEスタンプ販売中！ぜひサイトの一番下からチェック！</li>
-      <li>ゆいクラ投稿予定！(2025年10月2日記入。)</li>
-    </ul>
-  </section>
-
-  <!-- シリーズ動画 -->
-  <section>
-    <h2> シリーズ</h2>
-    <iframe width="560" height="315"
-            src="https://www.youtube.com/embed/videoseries?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
-            title="YouTube playlist"
-            frameborder="0"
-            allowfullscreen>
-    </iframe>
-    <p>ゆいきち１０分建築</p>
-  </section>
-
-  <!-- ギャラリー -->
-  <section>
-    <h2>ギャラリー</h2>
+    <h2> ギャラリー</h2>
     <div class="gallery">
       <img src="https://i.imgur.com/pL2sRcl.png" alt="チャンネルアイコン">
       <img src="https://i.imgur.com/U8Ffcgd.png" alt="チャンネルバナー">
@@ -162,27 +167,8 @@
     </div>
   </section>
 
-  <!-- プロフィール -->
-  <section>
-    <h2> プロフィール</h2>
-    <p>どうも今日も、ゆいきちです。<br>
-       マイクラ実況を中心に動画投稿しています！<br>
-       やっていること：サバイバル生活・建築<br>
-       好きなこと：栄させるw</p>
-  </section>
-
-  <!-- リンク集 -->
-  <section>
-    <h2> リンク</h2>
-    <p>
-      <a class="button" href="https://www.youtube.com/@ゆいきち-j4c" target="_blank">YouTubeチャンネル</a>
-      <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
-      <a class="button" href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
-    </p>
-  </section>
-
   <footer>
-    <p>&copy; 2025 ゆいきちチャンネル　公式サイト</p>
+    <p>&copy; 2025 ゆいきち公式サイト</p>
   </footer>
 
   <!-- ライトボックス -->
@@ -191,9 +177,13 @@
   </div>
 
   <script>
-    // ダークモード切替
-    document.getElementById("darkToggle").addEventListener("click", function() {
-      document.body.classList.toggle("dark");
+    // 3モード切替
+    const modes = ["normal", "light", "dark"];
+    let currentMode = 0;
+    document.getElementById("modeToggle").addEventListener("click", () => {
+      document.body.classList.remove(modes[currentMode]);
+      currentMode = (currentMode + 1) % modes.length;
+      document.body.classList.add(modes[currentMode]);
     });
 
     // ギャラリー拡大表示
