@@ -10,9 +10,17 @@
       font-family: "Trebuchet MS", sans-serif;
       background: #fff; /* 通常モード 白背景 */
       color: #000;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      transition: background 0.5s, color 0.5s;
     }
     body.dark {
-      background: #111; /* ダークモード 黒背景 */
+      background: #555; /* ダークモード 灰色背景 */
+      color: #fff;
+    }
+    body.black {
+      background: #111; /* ブラックモード 黒背景 */
       color: #ddd;
     }
     header {
@@ -41,15 +49,15 @@
     }
     section {
       padding: 30px 10px;
-      background: rgba(0,0,0,0.6);
+      background: rgba(255,255,255,0.9);
       margin: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     }
-    body.light section {
-      background: rgba(255,255,255,0.8);
-    }
     body.dark section {
+      background: rgba(0,0,0,0.6);
+    }
+    body.black section {
       background: rgba(0,0,0,0.8);
     }
     iframe {
@@ -147,22 +155,22 @@
   <section>
     <h2> お知らせ</h2>
     <ul style="list-style:none; padding:0;">
-      <li>チャンネル登録者数2025年10月1日45人突破！</li>
-      <li> ゆいきちLINEスタンプ販売中！ぜひサイトの一番下からチェック！</li>
-      <li>ゆいクラ投稿予定！(2025年10月2日記入。)</li>
+      <li>チャンネル登録者数2025年10月1日 45人突破！</li>
+      <li>ゆいきちLINEスタンプ販売中！ぜひチェック！</li>
+      <li>ゆいクラ投稿予定！（2025年10月2日記入）</li>
     </ul>
   </section>
 
   <!-- シリーズ動画 -->
   <section>
-    <h2> シリーズ</h2>
+    <h2> シリーズ動画</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/videoseries?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
             title="YouTube playlist"
             frameborder="0"
             allowfullscreen>
     </iframe>
-    <p>ゆいきち１０分建築</p>
+    <p>ゆいきち 10分建築シリーズ</p>
   </section>
 
   <!-- 投票機能 -->
@@ -192,8 +200,8 @@
   <!-- プロフィール -->
   <section>
     <h2> プロフィール</h2>
-    <p>どうも今日も、ゆいきちです。<br>
-       マイクラ実況を中心に動画投稿しています！<br>
+    <p>どうも今日も、ゆいきちです！<br>
+       マイクラ実況を中心に動画投稿しています。<br>
        やっていること：サバイバル生活・建築<br>
        好きなこと：栄させるw</p>
   </section>
@@ -202,7 +210,7 @@
   <section>
     <h2> リンク</h2>
     <p>
-      <a class="button" href="https://www.youtube.com/@ゆいきち-stoptuy" target="_blank">YouTubeチャンネル</a>
+      <a class="button" href="https://www.youtube.com/@ゆいきち-j4c" target="_blank">YouTubeチャンネル</a>
       <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
       <a class="button" href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
     </p>
@@ -218,22 +226,22 @@
   </div>
 
   <script>
-    // モード切替
-    const modes = ["normal", "light", "dark"];
+    // モード切替（通常=白 → ダーク=灰色 → ブラック=黒）
+    const modes = ["normal", "dark", "black"];
     let current = 0;
     const body = document.body;
     const button = document.getElementById("modeToggle");
 
     button.addEventListener("click", () => {
-      body.classList.remove("light", "dark");
+      body.classList.remove("dark", "black");
       current = (current + 1) % modes.length;
       if (modes[current] !== "normal") {
         body.classList.add(modes[current]);
       }
-      button.textContent = 
+      button.textContent =
         modes[current] === "normal" ? "モード: 通常" :
-        modes[current] === "light" ? "モード: ライト" :
-        "モード: ダーク";
+        modes[current] === "dark" ? "モード: ダーク" :
+        "モード: ブラック";
     });
     button.textContent = "モード: 通常";
 
