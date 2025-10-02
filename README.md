@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
-      background: url('https://i.imgur.com/O7KXy1K.png') repeat;
+      background: #228B22; /* 草っぽい緑背景 */
       color: #fff;
       text-align: center;
       margin: 0;
@@ -15,7 +15,7 @@
       transition: background 0.5s, color 0.5s;
     }
     body.dark {
-      background: url('https://i.imgur.com/WwBdT8t.png') repeat; /* 夜空背景 */
+      background: #111; /* 夜っぽい黒背景 */
       color: #ddd;
     }
     header {
@@ -115,7 +115,7 @@
     <h2>🔔 お知らせ</h2>
     <ul style="list-style:none; padding:0;">
       <li>チャンネル登録者数2025年10月1日突破！</li>
-      <li>🔥 ゆいきちlineスタンプ販売中！ぜひサイトの一番下からチェック！</li>
+      <li>🔥 ゆいきちLINEスタンプ販売中！ぜひサイトの一番下からチェック！</li>
       <li>ゆいクラ投稿予定！(2025年10月2日記入。)</li>
     </ul>
   </section>
@@ -124,7 +124,7 @@
   <section>
     <h2> シリーズ</h2>
     <iframe width="560" height="315"
-            src="https://www.youtube.com/playlist?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
+            src="https://www.youtube.com/embed/videoseries?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
             title="YouTube playlist"
             frameborder="0"
             allowfullscreen>
