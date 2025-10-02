@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
-      background: #888; /* 灰色背景 */
+      background: #555; /* 灰色背景 */
       color: #fff;
       text-align: center;
       margin: 0;
@@ -72,20 +72,33 @@
       background: #A0522D;
       transform: translateY(-2px);
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
     .gallery img {
       width: 200px;
       margin: 10px;
       border-radius: 8px;
       border: 3px solid #444;
       transition: transform 0.2s;
+      cursor: pointer;
     }
     .gallery img:hover {
       transform: scale(1.1);
+    }
+    /* ライトボックス */
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid #fff;
+      border-radius: 12px;
     }
     footer {
       background: #111;
@@ -117,10 +130,10 @@
 
   <!-- お知らせ -->
   <section>
-    <h2>🔔 お知らせ</h2>
+    <h2> お知らせ</h2>
     <ul style="list-style:none; padding:0;">
-      <li>チャンネル登録者数2025年10月1日突破！</li>
-      <li>🔥 ゆいきちLINEスタンプ販売中！ぜひサイトの一番下からチェック！</li>
+      <li>チャンネル登録者数2025年10月1日45人突破！</li>
+      <li> ゆいきちLINEスタンプ販売中！ぜひサイトの一番下からチェック！</li>
       <li>ゆいクラ投稿予定！(2025年10月2日記入。)</li>
     </ul>
   </section>
@@ -139,14 +152,14 @@
 
   <!-- ギャラリー -->
   <section>
-    <h2>📷 ギャラリー</h2>
+    <h2>ギャラリー</h2>
     <div class="gallery">
-      <!-- ここに有効な画像URLを入れる！ -->
-      <img src="https://placekitten.com/300/200" alt="仮の画像1">
-      <img src="https://placekitten.com/301/200" alt="仮の画像2">
-      <img src="https://placekitten.com/302/200" alt="仮の画像3">
+      <img src="https://i.imgur.com/pL2sRcl.png" alt="チャンネルアイコン">
+      <img src="https://i.imgur.com/U8Ffcgd.png" alt="チャンネルバナー">
+      <img src="https://i.imgur.com/owsD0LS.jpeg" alt="10分建築ビル">
+      <img src="https://i.imgur.com/BdrazJy.png" alt="ゆいきちナビQRコード">
+      <img src="https://i.imgur.com/lvbDh4f.png" alt="ゆいきちスタンプ商品">
     </div>
-    <p>※ギャラリー画像は有効なURLに差し替えてください</p>
   </section>
 
   <!-- プロフィール -->
@@ -160,7 +173,7 @@
 
   <!-- リンク集 -->
   <section>
-    <h2>🔗 リンク</h2>
+    <h2> リンク</h2>
     <p>
       <a class="button" href="https://www.youtube.com/@ゆいきち-j4c" target="_blank">YouTubeチャンネル</a>
       <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
@@ -172,9 +185,28 @@
     <p>&copy; 2025 ゆいきち | マイクラ実況公式サイト</p>
   </footer>
 
+  <!-- ライトボックス -->
+  <div id="lightbox">
+    <img src="" alt="拡大画像">
+  </div>
+
   <script>
+    // ダークモード切替
     document.getElementById("darkToggle").addEventListener("click", function() {
       document.body.classList.toggle("dark");
+    });
+
+    // ギャラリー拡大表示
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+    document.querySelectorAll(".gallery img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+      });
+    });
+    lightbox.addEventListener("click", () => {
+      lightbox.style.display = "none";
     });
   </script>
 </body>
