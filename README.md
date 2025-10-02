@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
-      background: #228B22; /* 草っぽい緑背景 */
+      background: #888; /* 灰色背景 */
       color: #fff;
       text-align: center;
       margin: 0;
@@ -71,6 +71,11 @@
     a.button:hover {
       background: #A0522D;
       transform: translateY(-2px);
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .gallery img {
       width: 200px;
@@ -136,10 +141,12 @@
   <section>
     <h2>📷 ギャラリー</h2>
     <div class="gallery">
-      <img src="https://i.imgur.com/5WqYtC7.png" alt="マイクラ建築1">
-      <img src="https://i.imgur.com/sZX2K5U.png" alt="マイクラ建築2">
-      <img src="https://i.imgur.com/JkE8zWf.png" alt="マイクラ建築3">
+      <!-- ここに有効な画像URLを入れる！ -->
+      <img src="https://placekitten.com/300/200" alt="仮の画像1">
+      <img src="https://placekitten.com/301/200" alt="仮の画像2">
+      <img src="https://placekitten.com/302/200" alt="仮の画像3">
     </div>
+    <p>※ギャラリー画像は有効なURLに差し替えてください</p>
   </section>
 
   <!-- プロフィール -->
