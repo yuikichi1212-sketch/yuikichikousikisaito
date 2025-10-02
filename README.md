@@ -98,9 +98,9 @@
     <button id="darkToggle"> ダークモード</button>
   </header>
 
-  <!-- 最新動画 -->
+  <!-- おすすめ動画 -->
   <section>
-    <h2> 最新動画</h2>
+    <h2> おすすめ動画</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/hkhgFTBFkr4"
             title="YouTube video player"
@@ -114,15 +114,15 @@
   <section>
     <h2>🔔 お知らせ</h2>
     <ul style="list-style:none; padding:0;">
-      <li>📅 2025-10-01 新作動画を公開しました！</li>
-      <li>🔥 スタンプ販売中！ぜひチェックしてね</li>
-      <li>⚒️ サイトにマイクラ風デザイン追加！</li>
+      <li>チャンネル登録者数2025年10月1日突破！</li>
+      <li>🔥 ゆいきちlineスタンプ販売中！ぜひサイトの一番下からチェック！</li>
+      <li>ゆいクラ投稿予定！(2025年10月2日記入。)</li>
     </ul>
   </section>
 
   <!-- シリーズ動画 -->
   <section>
-    <h2> 人気シリーズ</h2>
+    <h2> シリーズ</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/playlist?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
             title="YouTube playlist"
