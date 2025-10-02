@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ゆいきち公式サイト</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
@@ -93,7 +94,6 @@
     .gallery img:hover {
       transform: scale(1.1);
     }
-    /* ライトボックス */
     #lightbox {
       display: none;
       position: fixed;
@@ -116,6 +116,20 @@
       padding: 10px;
       margin-top: 20px;
       font-size: 0.9rem;
+    }
+    .vote-options button {
+      margin: 8px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #228B22;
+      color: white;
+      transition: 0.3s;
+    }
+    .vote-options button:hover {
+      background: #2ecc71;
     }
   </style>
 </head>
@@ -159,6 +173,18 @@
     <p>ゆいきち１０分建築</p>
   </section>
 
+  <!-- 投票機能 -->
+  <section>
+    <h2> 好きな企画に投票！</h2>
+    <div class="vote-options">
+      <button onclick="vote('10分建築')">10分建築</button>
+      <button onclick="vote('ゆいクラ')">ゆいクラ</button>
+      <button onclick="vote('ショート')">ショート</button>
+    </div>
+    <canvas id="voteChart" width="400" height="400"></canvas>
+    <p id="voteMessage"></p>
+  </section>
+
   <!-- ギャラリー -->
   <section>
     <h2> ギャラリー</h2>
@@ -200,21 +226,18 @@
   </div>
 
   <script>
-    // モード切替（通常→ライト→ダーク→通常…）
+    // モード切替
     const modes = ["normal", "light", "dark"];
     let current = 0;
     const body = document.body;
     const button = document.getElementById("modeToggle");
 
     button.addEventListener("click", () => {
-      // 現在のクラスを消す
       body.classList.remove("light", "dark");
-      // 次のモードへ
       current = (current + 1) % modes.length;
       if (modes[current] !== "normal") {
         body.classList.add(modes[current]);
       }
-      // ボタンの表示を変更
       button.textContent = 
         modes[current] === "normal" ? "モード: 通常" :
         modes[current] === "light" ? "モード: ライト" :
@@ -222,7 +245,7 @@
     });
     button.textContent = "モード: 通常";
 
-    // ギャラリー拡大表示
+    // ギャラリー拡大
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = lightbox.querySelector("img");
     document.querySelectorAll(".gallery img").forEach(img => {
@@ -234,6 +257,46 @@
     lightbox.addEventListener("click", () => {
       lightbox.style.display = "none";
     });
+
+    // 投票機能
+    const ctx = document.getElementById('voteChart').getContext('2d');
+    let votes = JSON.parse(localStorage.getItem("votes")) || {
+      "10分建築": 0,
+      "ゆいクラ": 0,
+      "ショート": 0
+    };
+    let hasVoted = localStorage.getItem("hasVoted") === "true";
+
+    const chart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: Object.keys(votes),
+        datasets: [{
+          data: Object.values(votes),
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
+        }]
+      }
+    });
+
+    function updateChart() {
+      chart.data.datasets[0].data = Object.values(votes);
+      chart.update();
+    }
+
+    function vote(option) {
+      if (hasVoted) {
+        document.getElementById("voteMessage").textContent = "すでに投票済みです！";
+        return;
+      }
+      votes[option]++;
+      hasVoted = true;
+      localStorage.setItem("votes", JSON.stringify(votes));
+      localStorage.setItem("hasVoted", "true");
+      updateChart();
+      document.getElementById("voteMessage").textContent = option + " に投票しました！";
+    }
+
+    updateChart();
   </script>
 </body>
 </html>
