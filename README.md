@@ -7,30 +7,21 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
+      background: #555; /* 通常モード 灰色背景 */
+      color: #fff;
       text-align: center;
       margin: 0;
       padding: 0;
       transition: background 0.5s, color 0.5s;
     }
-
-    /* 通常モード（灰色） */
-    body.normal {
-      background: #555;
-      color: #fff;
-    }
-
-    /* ライトモード（白） */
     body.light {
-      background: #fff;
+      background: #fff; /* ライトモード 白背景 */
       color: #000;
     }
-
-    /* ダークモード（黒） */
     body.dark {
-      background: #111;
+      background: #111; /* ダークモード 黒背景 */
       color: #ddd;
     }
-
     header {
       background: #228B22;
       padding: 20px;
@@ -55,7 +46,6 @@
       border-radius: 6px;
       cursor: pointer;
     }
-
     section {
       padding: 30px 10px;
       background: rgba(0,0,0,0.6);
@@ -64,15 +54,11 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     }
     body.light section {
-      background: rgba(0,0,0,0.05);
-    }
-    body.normal section {
-      background: rgba(0,0,0,0.6);
+      background: rgba(255,255,255,0.8);
     }
     body.dark section {
-      background: rgba(255,255,255,0.05);
+      background: rgba(0,0,0,0.8);
     }
-
     iframe {
       max-width: 90%;
       border-radius: 12px;
@@ -96,7 +82,6 @@
       background: #A0522D;
       transform: translateY(-2px);
     }
-
     .gallery img {
       width: 200px;
       margin: 10px;
@@ -108,7 +93,6 @@
     .gallery img:hover {
       transform: scale(1.1);
     }
-
     /* ライトボックス */
     #lightbox {
       display: none;
@@ -133,21 +117,18 @@
       margin-top: 20px;
       font-size: 0.9rem;
     }
-    body.light footer {
-      background: #eee;
-      color: #444;
-    }
   </style>
 </head>
-<body class="normal">
+<body>
   <header>
     <h1> ゆいきち公式サイト </h1>
     <p>ようこそ！マイクラ実況ゆいきちワールドへ！</p>
     <button id="modeToggle">モード切替</button>
   </header>
 
+  <!-- おすすめ動画 -->
   <section>
-    <h2>おすすめ動画</h2>
+    <h2> おすすめ動画</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/hkhgFTBFkr4"
             title="YouTube video player"
@@ -156,6 +137,29 @@
     </iframe>
   </section>
 
+  <!-- お知らせ -->
+  <section>
+    <h2> お知らせ</h2>
+    <ul style="list-style:none; padding:0;">
+      <li>チャンネル登録者数2025年10月1日45人突破！</li>
+      <li> ゆいきちLINEスタンプ販売中！ぜひサイトの一番下からチェック！</li>
+      <li>ゆいクラ投稿予定！(2025年10月2日記入。)</li>
+    </ul>
+  </section>
+
+  <!-- シリーズ動画 -->
+  <section>
+    <h2> シリーズ</h2>
+    <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/videoseries?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
+            title="YouTube playlist"
+            frameborder="0"
+            allowfullscreen>
+    </iframe>
+    <p>ゆいきち１０分建築</p>
+  </section>
+
+  <!-- ギャラリー -->
   <section>
     <h2> ギャラリー</h2>
     <div class="gallery">
@@ -165,6 +169,25 @@
       <img src="https://i.imgur.com/BdrazJy.png" alt="ゆいきちナビQRコード">
       <img src="https://i.imgur.com/lvbDh4f.png" alt="ゆいきちスタンプ商品">
     </div>
+  </section>
+
+  <!-- プロフィール -->
+  <section>
+    <h2> プロフィール</h2>
+    <p>どうも今日も、ゆいきちです。<br>
+       マイクラ実況を中心に動画投稿しています！<br>
+       やっていること：サバイバル生活・建築<br>
+       好きなこと：栄させるw</p>
+  </section>
+
+  <!-- リンク集 -->
+  <section>
+    <h2>🔗 リンク</h2>
+    <p>
+      <a class="button" href="https://www.youtube.com/@ゆいきち-j4c" target="_blank">YouTubeチャンネル</a>
+      <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
+      <a class="button" href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
+    </p>
   </section>
 
   <footer>
@@ -177,14 +200,27 @@
   </div>
 
   <script>
-    // 3モード切替
+    // モード切替（通常→ライト→ダーク→通常…）
     const modes = ["normal", "light", "dark"];
-    let currentMode = 0;
-    document.getElementById("modeToggle").addEventListener("click", () => {
-      document.body.classList.remove(modes[currentMode]);
-      currentMode = (currentMode + 1) % modes.length;
-      document.body.classList.add(modes[currentMode]);
+    let current = 0;
+    const body = document.body;
+    const button = document.getElementById("modeToggle");
+
+    button.addEventListener("click", () => {
+      // 現在のクラスを消す
+      body.classList.remove("light", "dark");
+      // 次のモードへ
+      current = (current + 1) % modes.length;
+      if (modes[current] !== "normal") {
+        body.classList.add(modes[current]);
+      }
+      // ボタンの表示を変更
+      button.textContent = 
+        modes[current] === "normal" ? "モード: 通常" :
+        modes[current] === "light" ? "モード: ライト" :
+        "モード: ダーク";
     });
+    button.textContent = "モード: 通常";
 
     // ギャラリー拡大表示
     const lightbox = document.getElementById("lightbox");
