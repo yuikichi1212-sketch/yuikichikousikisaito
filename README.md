@@ -8,16 +8,12 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
-      background: #555; /* 通常モード 灰色背景 */
-      color: #fff;
+      background: #fff; /* 通常モード 白背景 */
+      color: #000;
       text-align: center;
       margin: 0;
       padding: 0;
       transition: background 0.5s, color 0.5s;
-    }
-    body.light {
-      background: #fff; /* ライトモード 白背景 */
-      color: #000;
     }
     body.dark {
       background: #111; /* ダークモード 黒背景 */
