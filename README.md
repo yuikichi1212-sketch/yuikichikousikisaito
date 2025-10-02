@@ -10,10 +10,6 @@
       font-family: "Trebuchet MS", sans-serif;
       background: #fff; /* 通常モード 白背景 */
       color: #000;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-      transition: background 0.5s, color 0.5s;
     }
     body.dark {
       background: #111; /* ダークモード 黒背景 */
