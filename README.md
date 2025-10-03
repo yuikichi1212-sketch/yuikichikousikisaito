@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
-      background: #fff; /* 通常(ライト) */
+      background: #fff; /* ライト */
       color: #000;
       margin: 0;
       padding: 0;
@@ -37,8 +37,21 @@
     #menuToggle {
       position: absolute;
       top: 20px;
-      right: 20px;
+      right: 60px;
       font-size: 1.8rem;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2000;
+    }
+
+    /* モード切替ボタン */
+    #modeToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.4rem;
       color: white;
       background: none;
       border: none;
@@ -133,8 +146,9 @@
 <body>
   <header>
     <h1>ゆいきち公式サイト</h1>
-    <p>ようこそ！マイクラ実況ゆいきちワールドへ！</p>
+    <p>みんな久しぶりーーw</p>
     <button id="menuToggle">☰</button>
+    <button id="modeToggle"></button>
   </header>
 
   <!-- サイドメニュー -->
@@ -153,7 +167,6 @@
     <h2>おすすめ動画</h2>
     <iframe width="560" height="315"
             src="https://www.youtube.com/embed/hkhgFTBFkr4"
-            title="YouTube video player"
             frameborder="0"
             allowfullscreen></iframe>
   </section>
@@ -168,7 +181,7 @@
     </ul>
   </section>
 
-  <!-- シリーズ動画 -->
+  <!-- シリーズ -->
   <section id="series">
     <h2>シリーズ</h2>
     <iframe width="560" height="315"
@@ -203,9 +216,9 @@
   <section id="links">
     <h2>リンク</h2>
     <p>
-      <a class="button" href="https://www.youtube.com/@ゆいきち-stoptuy" target="_blank">YouTubeチャンネル</a>
-      <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
-      <a class="button" href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
+      <a href="https://www.youtube.com/@ゆいきち-stoptuy" target="_blank">YouTubeチャンネル</a><br>
+      <a href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a><br>
+      <a href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
     </p>
   </section>
 
@@ -227,18 +240,28 @@
     <p>&copy; 2025 ゆいきち公式サイト</p>
   </footer>
 
-  <!-- Chart.js CDN -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <script>
-    // サイドメニュー開閉
+    // メニュー開閉
     const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
     menuToggle.addEventListener("click", () => {
       sideMenu.classList.toggle("active");
     });
 
-    // 投票機能
+    // モード切替
+    const modeToggle = document.getElementById("modeToggle");
+    modeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      if (document.body.classList.contains("dark")) {
+        modeToggle.textContent = "☀️";
+      } else {
+        modeToggle.textContent = "🌙";
+      }
+    });
+
+    // 投票
     const ctx = document.getElementById('pollChart').getContext('2d');
     let pollData = { "10分建築": 0, "ゆいクラ": 0, "ショート": 0 };
     const pollChart = new Chart(ctx, {
