@@ -6,26 +6,22 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
+      background: #fff; /* 通常(ライト) */
+      color: #000;
       margin: 0;
       padding: 0;
-      background: #fff; /* 通常モード = ライト */
-      color: #000;
       transition: background 0.5s, color 0.5s;
-      scroll-behavior: smooth;
     }
     body.dark {
-      background: #111; /* ダークモード */
+      background: #111; /* ダーク */
       color: #ddd;
     }
-
     header {
       background: #228B22;
       padding: 20px;
       border-bottom: 4px solid #006400;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      position: relative;
     }
     header h1 {
       margin: 0;
@@ -33,29 +29,21 @@
       color: #FFD700;
       text-shadow: 2px 2px #000;
     }
-    #modeToggle {
-      position: absolute;
-      top: 15px;
-      right: 60px;
-      padding: 6px 12px;
-      background: #444;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+    header p {
+      margin: 5px 0 0;
     }
 
-    /* ハンバーガーメニュー */
+    /* ハンバーガーアイコン */
     #menuToggle {
       position: absolute;
-      top: 15px;
-      right: 15px;
-      font-size: 28px;
+      top: 20px;
+      right: 20px;
+      font-size: 1.8rem;
+      color: white;
       background: none;
       border: none;
-      color: white;
       cursor: pointer;
-      z-index: 1001;
+      z-index: 2000;
     }
 
     /* サイドメニュー */
@@ -66,48 +54,48 @@
       width: 250px;
       height: 100%;
       background: #333;
-      color: #fff;
-      padding: 20px;
-      box-shadow: -4px 0 8px rgba(0,0,0,0.5);
-      transition: right 0.3s;
-      z-index: 1000;
+      color: white;
+      box-shadow: -3px 0 5px rgba(0,0,0,0.5);
+      transition: right 0.3s ease;
+      z-index: 1500;
+      padding-top: 60px;
     }
     #sideMenu.active {
       right: 0;
     }
     #sideMenu a {
       display: block;
-      padding: 10px;
-      color: #fff;
+      padding: 15px;
+      color: white;
       text-decoration: none;
-      border-bottom: 1px solid #555;
+      border-bottom: 1px solid #444;
     }
     #sideMenu a:hover {
       background: #444;
     }
 
     section {
-      padding: 40px 20px;
+      padding: 30px 10px;
+      background: rgba(0,0,0,0.05);
       margin: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-      background: rgba(255,255,255,0.8);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     body.dark section {
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.8);
     }
 
     iframe {
       max-width: 90%;
       border-radius: 12px;
-      border: 3px solid #333;
+      border: 4px solid #333;
     }
-
     .gallery img {
-      width: 180px;
-      margin: 8px;
+      width: 200px;
+      margin: 10px;
       border-radius: 8px;
       border: 3px solid #444;
+      transition: transform 0.2s;
       cursor: pointer;
     }
     .gallery img:hover {
@@ -117,34 +105,27 @@
     footer {
       background: #111;
       color: #aaa;
-      padding: 15px;
-      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
       font-size: 0.9rem;
     }
 
-    /* 投票用円グラフ */
+    /* 投票エリア */
+    #pollResult {
+      max-width: 400px;
+      margin: 0 auto;
+    }
     canvas {
-      max-width: 300px;
-      margin: 20px auto;
-      display: block;
+      margin-top: 15px;
     }
 
-    @media(min-width: 768px) {
-      #sideMenu {
-        position: static;
-        width: auto;
-        height: auto;
-        background: none;
-        box-shadow: none;
-        display: flex;
-        gap: 15px;
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
       }
-      #sideMenu a {
-        border: none;
-        color: #fff;
-      }
-      #menuToggle {
-        display: none;
+      .gallery img {
+        width: 120px;
       }
     }
   </style>
@@ -152,43 +133,48 @@
 <body>
   <header>
     <h1>ゆいきち公式サイト</h1>
-    <button id="modeToggle">モード切替</button>
-    <button id="menuToggle">≡</button>
-    <nav id="sideMenu">
-      <a href="#video">おすすめ動画</a>
-      <a href="#news">お知らせ</a>
-      <a href="#series">シリーズ</a>
-      <a href="#gallery">ギャラリー</a>
-      <a href="#profile">プロフィール</a>
-      <a href="#links">リンク</a>
-      <a href="#vote">投票</a>
-    </nav>
+    <p>ようこそ！マイクラ実況ゆいきちワールドへ！</p>
+    <button id="menuToggle">☰</button>
   </header>
+
+  <!-- サイドメニュー -->
+  <nav id="sideMenu">
+    <a href="#video">おすすめ動画</a>
+    <a href="#news">お知らせ</a>
+    <a href="#series">シリーズ</a>
+    <a href="#gallery">ギャラリー</a>
+    <a href="#profile">プロフィール</a>
+    <a href="#links">リンク</a>
+    <a href="#poll">投票</a>
+  </nav>
 
   <!-- おすすめ動画 -->
   <section id="video">
     <h2>おすすめ動画</h2>
     <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/hkhgFTBFkr4"
-      frameborder="0" allowfullscreen></iframe>
+            src="https://www.youtube.com/embed/hkhgFTBFkr4"
+            title="YouTube video player"
+            frameborder="0"
+            allowfullscreen></iframe>
   </section>
 
   <!-- お知らせ -->
   <section id="news">
     <h2>お知らせ</h2>
-    <ul style="list-style:none;padding:0;">
-      <li>チャンネル登録者数45人突破！</li>
-      <li>ゆいきちLINEスタンプ販売中！</li>
-      <li>ゆいクラ投稿予定！</li>
+    <ul style="list-style:none; padding:0;">
+      <li>チャンネル登録者数2025年10月1日45人突破！</li>
+      <li>ゆいきちLINEスタンプ販売中！ぜひサイトの一番下からチェック！</li>
+      <li>ゆいクラ投稿予定！(2025年10月2日記入。)</li>
     </ul>
   </section>
 
-  <!-- シリーズ -->
+  <!-- シリーズ動画 -->
   <section id="series">
     <h2>シリーズ</h2>
     <iframe width="560" height="315"
-      src="https://www.youtube.com/embed/videoseries?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
-      frameborder="0" allowfullscreen></iframe>
+            src="https://www.youtube.com/embed/videoseries?list=PLzhtEQbW0_4xaJ8LELjkFi-IcagEpzkT-"
+            frameborder="0"
+            allowfullscreen></iframe>
     <p>ゆいきち１０分建築</p>
   </section>
 
@@ -208,59 +194,71 @@
   <section id="profile">
     <h2>プロフィール</h2>
     <p>どうも今日も、ゆいきちです。<br>
-    マイクラ実況を中心に活動！<br>
-    サバイバル生活・建築が好き！</p>
+       マイクラ実況を中心に動画投稿しています！<br>
+       やっていること：サバイバル生活・建築<br>
+       好きなこと：栄させるw</p>
   </section>
 
   <!-- リンク -->
   <section id="links">
     <h2>リンク</h2>
     <p>
-      <a href="https://www.youtube.com/@ゆいきち-j4c" target="_blank">YouTubeチャンネル</a> |
-      <a href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a> |
-      <a href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
+      <a class="button" href="https://www.youtube.com/@ゆいきち-stoptuy" target="_blank">YouTubeチャンネル</a>
+      <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
+      <a class="button" href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
     </p>
   </section>
 
   <!-- 投票 -->
-  <section id="vote">
-    <h2>好きな企画投票</h2>
-    <button onclick="vote('建築')">10分建築</button>
-    <button onclick="vote('ゆいクラ')">ゆいクラ</button>
-    <button onclick="vote('ショート')">ショート</button>
-    <canvas id="chart"></canvas>
+  <section id="poll">
+    <h2>好きな企画に投票！</h2>
+    <form id="pollForm">
+      <label><input type="radio" name="vote" value="10分建築"> 10分建築</label><br>
+      <label><input type="radio" name="vote" value="ゆいクラ"> ゆいクラ</label><br>
+      <label><input type="radio" name="vote" value="ショート"> ショート</label><br>
+      <button type="submit">投票</button>
+    </form>
+    <div id="pollResult">
+      <canvas id="pollChart"></canvas>
+    </div>
   </section>
 
   <footer>
     <p>&copy; 2025 ゆいきち公式サイト</p>
   </footer>
 
+  <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    // ダーク/ライト切替
-    const modeBtn = document.getElementById("modeToggle");
-    modeBtn.onclick = () => document.body.classList.toggle("dark");
 
-    // ハンバーガーメニュー
-    const menuBtn = document.getElementById("menuToggle");
+  <script>
+    // サイドメニュー開閉
+    const menuToggle = document.getElementById("menuToggle");
     const sideMenu = document.getElementById("sideMenu");
-    menuBtn.onclick = () => sideMenu.classList.toggle("active");
+    menuToggle.addEventListener("click", () => {
+      sideMenu.classList.toggle("active");
+    });
 
     // 投票機能
-    const ctx = document.getElementById("chart").getContext("2d");
-    let votes = {建築:0, ゆいクラ:0, ショート:0};
-    let chart = new Chart(ctx, {
-      type: "pie",
+    const ctx = document.getElementById('pollChart').getContext('2d');
+    let pollData = { "10分建築": 0, "ゆいクラ": 0, "ショート": 0 };
+    const pollChart = new Chart(ctx, {
+      type: 'pie',
       data: {
-        labels: Object.keys(votes),
-        datasets: [{data: Object.values(votes), backgroundColor:["#ff6384","#36a2eb","#ffce56"]}]
+        labels: Object.keys(pollData),
+        datasets: [{
+          data: Object.values(pollData),
+          backgroundColor: ["#4CAF50", "#FFD700", "#FF6347"]
+        }]
       }
     });
-    function vote(option) {
-      votes[option]++;
-      chart.data.datasets[0].data = Object.values(votes);
-      chart.update();
-    }
+    document.getElementById("pollForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const choice = document.querySelector("input[name='vote']:checked");
+      if (!choice) return alert("投票してください！");
+      pollData[choice.value]++;
+      pollChart.data.datasets[0].data = Object.values(pollData);
+      pollChart.update();
+    });
   </script>
 </body>
 </html>
