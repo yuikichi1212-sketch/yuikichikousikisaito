@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -6,16 +7,18 @@
   <style>
     body {
       font-family: "Trebuchet MS", sans-serif;
-      background: #fff; /* ライト */
+      background: #fff; /* ライトモード */
       color: #000;
       margin: 0;
       padding: 0;
+      text-align: center;
       transition: background 0.5s, color 0.5s;
     }
     body.dark {
-      background: #111; /* ダーク */
+      background: #111; /* ダークモード */
       color: #ddd;
     }
+
     header {
       background: #228B22;
       padding: 20px;
@@ -29,15 +32,12 @@
       color: #FFD700;
       text-shadow: 2px 2px #000;
     }
-    header p {
-      margin: 5px 0 0;
-    }
 
     /* ハンバーガーアイコン */
     #menuToggle {
       position: absolute;
       top: 20px;
-      right: 60px;
+      right: 120px;
       font-size: 1.8rem;
       color: white;
       background: none;
@@ -49,14 +49,15 @@
     /* モード切替ボタン */
     #modeToggle {
       position: absolute;
-      top: 20px;
+      top: 18px;
       right: 20px;
-      font-size: 1.4rem;
+      padding: 6px 12px;
+      background: #444;
       color: white;
-      background: none;
       border: none;
+      border-radius: 6px;
       cursor: pointer;
-      z-index: 2000;
+      font-weight: bold;
     }
 
     /* サイドメニュー */
@@ -72,6 +73,7 @@
       transition: right 0.3s ease;
       z-index: 1500;
       padding-top: 60px;
+      text-align: left;
     }
     #sideMenu.active {
       right: 0;
@@ -90,9 +92,10 @@
     section {
       padding: 30px 10px;
       background: rgba(0,0,0,0.05);
-      margin: 20px;
+      margin: 20px auto;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      max-width: 800px;
     }
     body.dark section {
       background: rgba(0,0,0,0.8);
@@ -102,7 +105,9 @@
       max-width: 90%;
       border-radius: 12px;
       border: 4px solid #333;
+      background: #000;
     }
+
     .gallery img {
       width: 200px;
       margin: 10px;
@@ -113,6 +118,25 @@
     }
     .gallery img:hover {
       transform: scale(1.1);
+    }
+
+    /* ボタンリンク */
+    a.button {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background: #8B4513;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 3px solid #5A2D0C;
+      font-weight: bold;
+      box-shadow: 2px 2px 0 #000;
+      transition: 0.2s;
+    }
+    a.button:hover {
+      background: #A0522D;
+      transform: translateY(-2px);
     }
 
     footer {
@@ -146,9 +170,8 @@
 <body>
   <header>
     <h1>ゆいきち公式サイト</h1>
-    <p>みんな久しぶりーーw</p>
     <button id="menuToggle">☰</button>
-    <button id="modeToggle"></button>
+    <button id="modeToggle">ライトモード</button>
   </header>
 
   <!-- サイドメニュー -->
@@ -216,9 +239,9 @@
   <section id="links">
     <h2>リンク</h2>
     <p>
-      <a href="https://www.youtube.com/@ゆいきち-stoptuy" target="_blank">YouTubeチャンネル</a><br>
-      <a href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a><br>
-      <a href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
+      <a class="button" href="https://www.youtube.com/@ゆいきち-stoptuy" target="_blank">YouTubeチャンネル</a>
+      <a class="button" href="https://www.starico.jp/detail/a3169966.html" target="_blank">ゆいきちスタンプ</a>
+      <a class="button" href="https://yuikichi1212-sketch.github.io/yuikichinavi/" target="_blank">ゆいきちナビ</a>
     </p>
   </section>
 
@@ -255,9 +278,9 @@
     modeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark");
       if (document.body.classList.contains("dark")) {
-        modeToggle.textContent = "☀️";
+        modeToggle.textContent = "ダークモード";
       } else {
-        modeToggle.textContent = "🌙";
+        modeToggle.textContent = "ライトモード";
       }
     });
 
